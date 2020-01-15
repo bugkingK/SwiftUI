@@ -23,6 +23,9 @@ public struct Contact {
         givenName = contact.givenName
         organizationName = contact.organizationName
         fullName = "\(givenName)\(familyName)\(organizationName)"
+        if fullName.count == 0 {
+            fullName = "이름없음"
+        }
         phoneNumbers = contact.phoneNumbers.compactMap { (phoneNumber: CNLabeledValue) in
             guard let number = phoneNumber.value.value(forKey: "digits") as? String else { return nil }
             return number

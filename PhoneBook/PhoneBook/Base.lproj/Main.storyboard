@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oQJ-dH-AaQ">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
@@ -80,6 +80,80 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+        <!--Rx View Controller-->
+        <scene sceneID="ZYD-yz-eob">
+            <objects>
+                <viewController id="oQJ-dH-AaQ" customClass="RxViewController" customModule="PhoneBook" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="als-NV-NLE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vOd-I0-CsU">
+                                <rect key="frame" x="0.0" y="100" width="414" height="762"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ViewControllerCell" rowHeight="50" id="QRS-4l-dwi" customClass="ViewControllerCell" customModule="PhoneBook" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QRS-4l-dwi" id="Xpg-0s-J4X">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="moon.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="AF5-Re-25g">
+                                                    <rect key="frame" x="10" y="11" width="30" height="28.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="1HB-gF-x0F"/>
+                                                        <constraint firstAttribute="width" constant="30" id="wWG-bw-dsS"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69N-sQ-oaX">
+                                                    <rect key="frame" x="50" y="16" width="354" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="AF5-Re-25g" firstAttribute="centerY" secondItem="Xpg-0s-J4X" secondAttribute="centerY" id="MS7-4q-9XA"/>
+                                                <constraint firstItem="69N-sQ-oaX" firstAttribute="centerY" secondItem="AF5-Re-25g" secondAttribute="centerY" id="TB2-g7-VX4"/>
+                                                <constraint firstAttribute="trailing" secondItem="69N-sQ-oaX" secondAttribute="trailing" constant="10" id="V1b-sq-LCs"/>
+                                                <constraint firstItem="69N-sQ-oaX" firstAttribute="leading" secondItem="AF5-Re-25g" secondAttribute="trailing" constant="10" id="sZj-Lo-ZbH"/>
+                                                <constraint firstItem="AF5-Re-25g" firstAttribute="leading" secondItem="Xpg-0s-J4X" secondAttribute="leading" constant="10" id="zqr-dM-MRB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="fullName" destination="69N-sQ-oaX" id="x3B-m6-Uaj"/>
+                                            <outlet property="thumbnailImage" destination="AF5-Re-25g" id="tRN-nY-1MK"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="e7z-H9-VDi">
+                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="vOd-I0-CsU" firstAttribute="leading" secondItem="kEp-B7-84X" secondAttribute="leading" id="1Mq-BN-05u"/>
+                            <constraint firstItem="e7z-H9-VDi" firstAttribute="leading" secondItem="kEp-B7-84X" secondAttribute="leading" id="ANn-BD-5KZ"/>
+                            <constraint firstItem="vOd-I0-CsU" firstAttribute="top" secondItem="e7z-H9-VDi" secondAttribute="bottom" id="JhX-Dy-sBr"/>
+                            <constraint firstItem="e7z-H9-VDi" firstAttribute="top" secondItem="kEp-B7-84X" secondAttribute="top" id="N3E-e3-HNl"/>
+                            <constraint firstAttribute="trailing" secondItem="e7z-H9-VDi" secondAttribute="trailing" id="WHp-7F-ARq"/>
+                            <constraint firstItem="kEp-B7-84X" firstAttribute="trailing" secondItem="vOd-I0-CsU" secondAttribute="trailing" id="ZdX-fd-GzY"/>
+                            <constraint firstItem="kEp-B7-84X" firstAttribute="bottom" secondItem="vOd-I0-CsU" secondAttribute="bottom" id="cjf-i7-j1m"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kEp-B7-84X"/>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="e7z-H9-VDi" id="llk-M9-fLr"/>
+                        <outlet property="tableView" destination="vOd-I0-CsU" id="s8v-4r-1WD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LBe-08-klk" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="912" y="138"/>
         </scene>
     </scenes>
     <resources>

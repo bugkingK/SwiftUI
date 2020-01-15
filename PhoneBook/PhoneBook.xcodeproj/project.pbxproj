@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A529246C23CEBF1200C2A600 /* KoreanUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529246B23CEBF1200C2A600 /* KoreanUtil.swift */; };
 		A59381C223CD6F800099AC0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59381C123CD6F800099AC0C /* AppDelegate.swift */; };
 		A59381C423CD6F800099AC0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59381C323CD6F800099AC0C /* SceneDelegate.swift */; };
 		A59381C623CD6F800099AC0C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59381C523CD6F800099AC0C /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A529246B23CEBF1200C2A600 /* KoreanUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoreanUtil.swift; sourceTree = "<group>"; };
 		A59381BE23CD6F800099AC0C /* PhoneBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhoneBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A59381C123CD6F800099AC0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A59381C323CD6F800099AC0C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 		A59381C023CD6F800099AC0C /* PhoneBook */ = {
 			isa = PBXGroup;
 			children = (
+				A529246B23CEBF1200C2A600 /* KoreanUtil.swift */,
 				A59381DF23CDACE80099AC0C /* RxViewController */,
 				A59381D523CD715D0099AC0C /* ViewController */,
 				A59381C123CD6F800099AC0C /* AppDelegate.swift */,
@@ -175,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A59381D723CD71730099AC0C /* ViewControllerModel.swift in Sources */,
+				A529246C23CEBF1200C2A600 /* KoreanUtil.swift in Sources */,
 				A59381C623CD6F800099AC0C /* ViewController.swift in Sources */,
 				A59381C223CD6F800099AC0C /* AppDelegate.swift in Sources */,
 				A59381C423CD6F800099AC0C /* SceneDelegate.swift in Sources */,
