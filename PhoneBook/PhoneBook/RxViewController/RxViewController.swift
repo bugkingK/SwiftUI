@@ -50,7 +50,7 @@ class RxViewController: UIViewController {
         searchBar.delegate = self
         searchBar.rx.text
             .orEmpty
-            .debounce(RxTimeInterval.seconds(1), scheduler: MainScheduler.instance)
+            .debounce(RxTimeInterval.microseconds(7), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .subscribe(onNext: { [unowned self] query in
                 self.searching(query: query)
@@ -104,9 +104,15 @@ class RxViewController: UIViewController {
     
     private func searching(query:String) {
         var shown:[Contact] = self.allContacts
+        let `query` = query.trimmingCharacters(in: .whitespacesAndNewlines)
         if query != "" {
-            // 초성 검색은 안됨.
-            shown = shown.filter { $0.fullName.lowercased().contains(query.lowercased()) }
+            if !KoreanUtil.isInitial(query) {
+                shown = shown.filter { $0.fullName.lowercased().contains(query.lowercased()) }
+            } else {
+                shown = shown.filter {
+                    KoreanUtil.getInitials($0.fullName).contains(KoreanUtil.getInitials(query))
+                }
+            }
         }
         
         var header:Set<String> = []

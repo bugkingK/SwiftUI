@@ -16,8 +16,26 @@ public struct KOREAN {
 
 public class KoreanUtil {
     
-    static let BEGIN_UNICODE = 0xAC00
-    static let END_UNICODE = 0xD7A3
+    static let BEGIN_UNICODE:UInt32 = 0xAC00
+    static let END_UNICODE:UInt32 = 0xD7A3
+    static private let initialConsonantArray = [
+        "ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ", "ㅂ", "ㅃ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅉ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"
+    ]
+    static private let medialConsonantArray = [
+        "ㅏ", "ㅐ", "ㅑ", "ㅒ", "ㅓ", "ㅔ", "ㅕ", "ㅖ", "ㅗ", "ㅘ", "ㅙ", "ㅚ", "ㅛ", "ㅜ", "ㅝ", "ㅞ", "ㅟ", "ㅠ", "ㅡ", "ㅢ", "ㅣ"
+    ]
+    static private let finalConsonantArray = [
+        " ", "ㄱ", "ㄲ", "ㄳ", "ㄴ", "ㄵ", "ㄶ", "ㄷ", "ㄹ", "ㄺ", "ㄻ", "ㄼ", "ㄽ", "ㄾ", "ㄿ", "ㅀ", "ㅁ", "ㅂ", "ㅄ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"
+    ]
+    
+    static public func isInitial(_ string:String) -> Bool {
+        for unicode in string.unicodeScalars {
+            if !initialConsonantArray.contains(String(unicode)) {
+                return false
+            }
+        }
+        return true
+    }
     
     static public func getInitial(_ string:String) -> String? {
         guard let code = string.decomposedStringWithCanonicalMapping.unicodeScalars.first else {
@@ -32,30 +50,25 @@ public class KoreanUtil {
         return strInitial
     }
     
-    static public func split(_ string:String) {
-//        guard let value = UnicodeScalar(string)?.value else {
-//            return
-//        }
-//
-//        let x = (value - 0xAC00) / 28 / 21
-//        let y = (value - 0xAC00) / 28 % 21
-//        let z = (value - 0xAC00) % 28
-//
-//        if let onset = UnicodeScalar(0x1100 + x) {
-//            print(String(onset))
-//        }
-//        if let nucleus = UnicodeScalar(0x1161 + y) {
-//            print(String(nucleus))
-//        }
-//        if let coda = UnicodeScalar(0x11A6 + 1 + z) {
-//            print(String(coda))
-//        }
-//        print(string.decomposedStringWithCanonicalMapping.unicodeScalars.map{
-//            if $0 == nil {
-//                print("nil이라면? \($0)")
-//            }
-//            String($0)
-//        })
+    static public func getInitials(_ string:String) -> String {
+        var ret:String = ""
+        
+        for unicode in string.unicodeScalars {
+            if self.isInitial(String(unicode)) {
+                ret.append(String(unicode))
+                continue
+            }
+            
+            let unicodeValue = unicode.value
+            if !(unicodeValue >= BEGIN_UNICODE && unicodeValue <= END_UNICODE) {
+                continue
+            }
+            
+            let firstCodeValue = (unicodeValue - BEGIN_UNICODE) / 28 / 21
+            ret.append(initialConsonantArray[Int(firstCodeValue)])
+        }
+        
+        return ret
     }
     
 }
