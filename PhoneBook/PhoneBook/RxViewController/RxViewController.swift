@@ -47,7 +47,13 @@ class RxViewController: UIViewController {
     }
     
     private func setBind() {
-        searchBar.delegate = self
+        searchBar.rx
+            .searchButtonClicked
+            .subscribe(onNext: { [unowned self] in
+                self.searchBar.resignFirstResponder()
+            })
+            .disposed(by: disposedBag)
+        
         searchBar.rx.text
             .orEmpty
             .debounce(RxTimeInterval.microseconds(7), scheduler: MainScheduler.instance)
@@ -129,11 +135,5 @@ class RxViewController: UIViewController {
         
         self.sections.accept(sections)
         self.tableView.reloadData()
-    }
-}
-
-extension RxViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
     }
 }
