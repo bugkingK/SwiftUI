@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		A529246C23CEBF1200C2A600 /* KoreanUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529246B23CEBF1200C2A600 /* KoreanUtil.swift */; };
+		A549E16423CFF05600E10EB7 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = A549E16323CFF05600E10EB7 /* RxDataSources */; };
 		A59381C223CD6F800099AC0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59381C123CD6F800099AC0C /* AppDelegate.swift */; };
 		A59381C423CD6F800099AC0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59381C323CD6F800099AC0C /* SceneDelegate.swift */; };
 		A59381C623CD6F800099AC0C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59381C523CD6F800099AC0C /* ViewController.swift */; };
 		A59381C923CD6F800099AC0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A59381C723CD6F800099AC0C /* Main.storyboard */; };
 		A59381CB23CD6F820099AC0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A59381CA23CD6F820099AC0C /* Assets.xcassets */; };
 		A59381CE23CD6F820099AC0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A59381CC23CD6F820099AC0C /* LaunchScreen.storyboard */; };
-		A59381D723CD71730099AC0C /* ViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59381D623CD71730099AC0C /* ViewControllerModel.swift */; };
+		A59381D723CD71730099AC0C /* ContactsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59381D623CD71730099AC0C /* ContactsModel.swift */; };
 		A59381DA23CDAC160099AC0C /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = A59381D923CDAC160099AC0C /* RxBlocking */; };
 		A59381DC23CDAC160099AC0C /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A59381DB23CDAC160099AC0C /* RxSwift */; };
 		A59381DE23CDAC160099AC0C /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A59381DD23CDAC160099AC0C /* RxCocoa */; };
@@ -31,7 +32,7 @@
 		A59381CA23CD6F820099AC0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A59381CD23CD6F820099AC0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A59381CF23CD6F820099AC0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A59381D623CD71730099AC0C /* ViewControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerModel.swift; sourceTree = "<group>"; };
+		A59381D623CD71730099AC0C /* ContactsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsModel.swift; sourceTree = "<group>"; };
 		A59381E023CDACF70099AC0C /* RxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -41,6 +42,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A59381DE23CDAC160099AC0C /* RxCocoa in Frameworks */,
+				A549E16423CFF05600E10EB7 /* RxDataSources in Frameworks */,
 				A59381DC23CDAC160099AC0C /* RxSwift in Frameworks */,
 				A59381DA23CDAC160099AC0C /* RxBlocking in Frameworks */,
 			);
@@ -69,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				A529246B23CEBF1200C2A600 /* KoreanUtil.swift */,
+				A59381D623CD71730099AC0C /* ContactsModel.swift */,
 				A59381DF23CDACE80099AC0C /* RxViewController */,
 				A59381D523CD715D0099AC0C /* ViewController */,
 				A59381C123CD6F800099AC0C /* AppDelegate.swift */,
@@ -85,7 +88,6 @@
 			isa = PBXGroup;
 			children = (
 				A59381C523CD6F800099AC0C /* ViewController.swift */,
-				A59381D623CD71730099AC0C /* ViewControllerModel.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -118,6 +120,7 @@
 				A59381D923CDAC160099AC0C /* RxBlocking */,
 				A59381DB23CDAC160099AC0C /* RxSwift */,
 				A59381DD23CDAC160099AC0C /* RxCocoa */,
+				A549E16323CFF05600E10EB7 /* RxDataSources */,
 			);
 			productName = PhoneBook;
 			productReference = A59381BE23CD6F800099AC0C /* PhoneBook.app */;
@@ -149,6 +152,7 @@
 			mainGroup = A59381B523CD6F800099AC0C;
 			packageReferences = (
 				A59381D823CDAC160099AC0C /* XCRemoteSwiftPackageReference "RxSwift" */,
+				A549E16223CFF05600E10EB7 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = A59381BF23CD6F800099AC0C /* Products */;
 			projectDirPath = "";
@@ -177,7 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A59381D723CD71730099AC0C /* ViewControllerModel.swift in Sources */,
+				A59381D723CD71730099AC0C /* ContactsModel.swift in Sources */,
 				A529246C23CEBF1200C2A600 /* KoreanUtil.swift in Sources */,
 				A59381C623CD6F800099AC0C /* ViewController.swift in Sources */,
 				A59381C223CD6F800099AC0C /* AppDelegate.swift in Sources */,
@@ -382,6 +386,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A549E16223CFF05600E10EB7 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
 		A59381D823CDAC160099AC0C /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -393,6 +405,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A549E16323CFF05600E10EB7 /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A549E16223CFF05600E10EB7 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
+		};
 		A59381D923CDAC160099AC0C /* RxBlocking */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A59381D823CDAC160099AC0C /* XCRemoteSwiftPackageReference "RxSwift" */;

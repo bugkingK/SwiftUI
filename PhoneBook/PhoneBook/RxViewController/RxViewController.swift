@@ -9,26 +9,36 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import RxDataSources
 import Contacts
+
+struct SectionOfContacts {
+    var header: String
+    var items: [Item]
+}
+
+extension SectionOfContacts: SectionModelType {
+    typealias Item = Contact
+
+    init(original: SectionOfContacts, items: [Item]) {
+        self = original
+        self.items = items
+    }
+}
 
 class RxViewController: UIViewController {
     
     @IBOutlet private weak var searchBar:UISearchBar!
     @IBOutlet private weak var tableView:UITableView!
     
-    private var header:[String] = []
     private var allContacts:[Contact] = []
-    private var shownContacts:[[Contact]] = []
+    private var sections: BehaviorRelay<[SectionOfContacts]> = BehaviorRelay(value:[])
     private var disposedBag:DisposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setData()
         self.setBind()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        self.setData()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -37,16 +47,41 @@ class RxViewController: UIViewController {
     }
     
     private func setBind() {
-        tableView.dataSource = self
         searchBar.delegate = self
-        
-        searchBar
-            .rx.text
+        searchBar.rx.text
             .orEmpty
+            .debounce(RxTimeInterval.seconds(1), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .subscribe(onNext: { [unowned self] query in
                 self.searching(query: query)
             })
+            .disposed(by: disposedBag)
+        
+        let dataSource = RxTableViewSectionedReloadDataSource<SectionOfContacts>(
+            configureCell: { dataSource, tableView, indexPath, item in
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ViewControllerCell", for: indexPath) as? ViewControllerCell else {
+                return UITableViewCell()
+            }
+            
+            cell.fullName.text = item.fullName
+            cell.thumbnailImage.image = item.thumbnailImage ?? UIImage(systemName: "moon.fill")
+            return cell
+        })
+        
+        dataSource.titleForHeaderInSection = { dataSource, index in
+            return dataSource.sectionModels[index].header
+        }
+        
+        dataSource.sectionIndexTitles = { dataSource in
+            return dataSource.sectionModels.map { $0.header }
+        }
+        
+        dataSource.sectionForSectionIndexTitle = { dataSource, title, index in
+            return dataSource.sectionModels.map { $0.header }.firstIndex(of: title) ?? 0
+        }
+        
+        sections
+            .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposedBag)
     }
     
@@ -71,57 +106,24 @@ class RxViewController: UIViewController {
         var shown:[Contact] = self.allContacts
         if query != "" {
             // 초성 검색은 안됨.
-            shown = shown.filter { $0.fullName.contains(query) }
+            shown = shown.filter { $0.fullName.lowercased().contains(query.lowercased()) }
         }
         
         var header:Set<String> = []
         shown.forEach {
             header.update(with: KoreanUtil.getInitial($0.fullName) ?? "")
         }
-        self.header = header.sorted()
-        for (i, query) in self.header.enumerated() {
-            self.shownContacts.insert(shown.filter {
-                (KoreanUtil.getInitial($0.fullName) ?? "@") == query
-            }, at: i)
-        }
-
-        self.tableView.reloadData()
-    }
-
-}
-
-extension RxViewController:UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return self.header.count
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.header[section]
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.shownContacts[section].count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ViewControllerCell", for: indexPath) as? ViewControllerCell else {
-            return UITableViewCell()
+        
+        var sections:[SectionOfContacts] = []
+        for head in header.sorted() {
+            sections.append(SectionOfContacts(header: head, items:
+                shown.filter { (KoreanUtil.getInitial($0.fullName) ?? "@") == head }
+            ))
         }
         
-        let item = self.shownContacts[indexPath.section][indexPath.row]
-        cell.fullName.text = item.fullName
-        cell.thumbnailImage.image = item.thumbnailImage ?? UIImage(systemName: "moon.fill")
-        return cell
+        self.sections.accept(sections)
+        self.tableView.reloadData()
     }
-    
-    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return self.header
-    }
-    
-    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-        return self.header.firstIndex(of: title) ?? 0
-    }
-    
 }
 
 extension RxViewController: UISearchBarDelegate {

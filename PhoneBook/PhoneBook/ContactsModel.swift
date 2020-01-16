@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ContactsModel.swift
 //  PhoneBook
 //
 //  Created by Banaple on 2020/01/14.
@@ -8,6 +8,35 @@
 
 import UIKit
 import Contacts
+
+public struct Contact {
+    var familyName:String
+    var givenName:String
+    var organizationName:String
+    var fullName:String
+    /// home, mobile, home fax
+    var phoneNumbers:[String]
+    var thumbnailImage:UIImage?
+    
+    init(contact:CNContact) {
+        familyName = contact.familyName
+        givenName = contact.givenName
+        organizationName = contact.organizationName
+        fullName = "\(givenName)\(familyName)\(organizationName)"
+        if fullName.count == 0 {
+            fullName = "이름없음"
+        }
+        phoneNumbers = contact.phoneNumbers.compactMap { (phoneNumber: CNLabeledValue) in
+            guard let number = phoneNumber.value.value(forKey: "digits") as? String else { return nil }
+            return number
+        }
+        
+        if let thumbnailData = contact.thumbnailImageData {
+            thumbnailImage = UIImage(data: thumbnailData)
+        }
+    }
+}
+
 
 public class PhoneBooKit: NSObject {
     
