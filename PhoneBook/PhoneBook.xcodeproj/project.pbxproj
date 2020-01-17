@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A529246C23CEBF1200C2A600 /* KoreanUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529246B23CEBF1200C2A600 /* KoreanUtil.swift */; };
+		A53841C023D04CFB00C440AE /* KoreanKit in Frameworks */ = {isa = PBXBuildFile; productRef = A53841BF23D04CFB00C440AE /* KoreanKit */; };
 		A549E16423CFF05600E10EB7 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = A549E16323CFF05600E10EB7 /* RxDataSources */; };
 		A59381C223CD6F800099AC0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59381C123CD6F800099AC0C /* AppDelegate.swift */; };
 		A59381C423CD6F800099AC0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59381C323CD6F800099AC0C /* SceneDelegate.swift */; };
@@ -45,6 +46,7 @@
 				A549E16423CFF05600E10EB7 /* RxDataSources in Frameworks */,
 				A59381DC23CDAC160099AC0C /* RxSwift in Frameworks */,
 				A59381DA23CDAC160099AC0C /* RxBlocking in Frameworks */,
+				A53841C023D04CFB00C440AE /* KoreanKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +123,7 @@
 				A59381DB23CDAC160099AC0C /* RxSwift */,
 				A59381DD23CDAC160099AC0C /* RxCocoa */,
 				A549E16323CFF05600E10EB7 /* RxDataSources */,
+				A53841BF23D04CFB00C440AE /* KoreanKit */,
 			);
 			productName = PhoneBook;
 			productReference = A59381BE23CD6F800099AC0C /* PhoneBook.app */;
@@ -153,6 +156,7 @@
 			packageReferences = (
 				A59381D823CDAC160099AC0C /* XCRemoteSwiftPackageReference "RxSwift" */,
 				A549E16223CFF05600E10EB7 /* XCRemoteSwiftPackageReference "RxDataSources" */,
+				A53841BE23D04CFA00C440AE /* XCRemoteSwiftPackageReference "KoreanKit" */,
 			);
 			productRefGroup = A59381BF23CD6F800099AC0C /* Products */;
 			projectDirPath = "";
@@ -386,6 +390,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A53841BE23D04CFA00C440AE /* XCRemoteSwiftPackageReference "KoreanKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bugkingK/KoreanKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
 		A549E16223CFF05600E10EB7 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
@@ -405,6 +417,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A53841BF23D04CFB00C440AE /* KoreanKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A53841BE23D04CFA00C440AE /* XCRemoteSwiftPackageReference "KoreanKit" */;
+			productName = KoreanKit;
+		};
 		A549E16323CFF05600E10EB7 /* RxDataSources */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A549E16223CFF05600E10EB7 /* XCRemoteSwiftPackageReference "RxDataSources" */;

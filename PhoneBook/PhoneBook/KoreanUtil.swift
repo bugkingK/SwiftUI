@@ -8,11 +8,9 @@
 
 import Foundation
 
-public struct KOREAN {
-    var initial:String?
-    var middle:String?
-    var final:String?
-}
+
+
+
 
 public class KoreanUtil {
     
@@ -54,13 +52,10 @@ public class KoreanUtil {
         var ret:String = ""
         
         for unicode in string.unicodeScalars {
-            if self.isInitial(String(unicode)) {
-                ret.append(String(unicode))
-                continue
-            }
-            
             let unicodeValue = unicode.value
-            if !(unicodeValue >= BEGIN_UNICODE && unicodeValue <= END_UNICODE) {
+            if self.isInitial(String(unicode))
+                || !(unicodeValue >= BEGIN_UNICODE && unicodeValue <= END_UNICODE){
+                ret.append(String(unicode))
                 continue
             }
             

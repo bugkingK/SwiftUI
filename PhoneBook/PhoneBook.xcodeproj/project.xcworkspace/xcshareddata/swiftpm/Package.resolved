@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "KoreanKit",
+        "repositoryURL": "https://github.com/bugkingK/KoreanKit.git",
+        "state": {
+          "branch": null,
+          "revision": "52a2d9bfb4a6a688d0f1a5fd591e9fb5b9e7d4f9",
+          "version": "1.0.1"
+        }
+      },
+      {
         "package": "RxDataSources",
         "repositoryURL": "https://github.com/RxSwiftCommunity/RxDataSources",
         "state": {
